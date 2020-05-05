@@ -18,28 +18,20 @@
       <span class="navbar-toggler-bar navbar-kebab"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="collapseExample" [ngbCollapse]="isCollapsed">
-      <form>
-        <div class="input-group no-border">
-          <input type="text" value="" class="form-control" placeholder="Search...">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <i class="nc-icon nc-zoom-split"></i>
-            </div>
-          </div>
-        </div>
-      </form>
+<!--      <form>-->
+<!--        <div class="input-group no-border">-->
+<!--          <input type="text" value="" class="form-control" placeholder="Search...">-->
+<!--          <div class="input-group-append">-->
+<!--            <div class="input-group-text">-->
+<!--              <i class="nc-icon nc-zoom-split"></i>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </form>-->
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)" data-toggle="tooltip" title="Avisos Pendentes">
-            <i class="nc-icon nc-bell-55"></i>
-            <p>
-              <span class="d-lg-none d-md-block">Avisos</span>
-            </p>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)" data-toggle="tooltip" title="Visualizar Perfil">
+          <a class="nav-link" [routerLink]="['/user']" tooltip="Visualizar Perfil">
+            {{user?.name}}
             <i class="nc-icon nc-single-02"></i>
             <p>
               <span class="d-lg-none d-md-block">Perfil</span>
@@ -48,7 +40,16 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" (click)="logout($event)" data-toggle="tooltip" title="Sair da Aplicação">
+          <a class="nav-link" tooltip="Avisos Pendentes">
+            <i class="nc-icon nc-bell-55"></i>
+            <p>
+              <span class="d-lg-none d-md-block">Avisos</span>
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout($event)" tooltip="Sair da Aplicação">
             <span class="badge badge-info badge-sair" style="padding: 6px 8px !important; cursor: pointer !important;">Sair</span>
           </a>
         </li>

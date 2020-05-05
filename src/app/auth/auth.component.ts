@@ -15,6 +15,8 @@ export class AuthComponent implements OnInit {
 
   formulario: FormGroup;
 
+  icon: string;
+
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
@@ -43,11 +45,13 @@ export class AuthComponent implements OnInit {
         if (errorResponse.error.message === 'Usuário inativo!') {
           this.ngxLoader.stop();
 
-          this.showNotificacao('top', 'right', 'warning', errorResponse.error.message);
+          this.icon = 'nc-bell-55';
+          this.showNotificacao('top', 'right', 'warning', errorResponse.error.message, this.icon);
         } else if (errorResponse.error.message === 'Não autorizado!') {
           this.ngxLoader.stop();
 
-          this.showNotificacao('top', 'right', 'warning', errorResponse.error.message);
+          this.icon = 'nc-bell-55';
+          this.showNotificacao('top', 'right', 'warning', errorResponse.error.message, this.icon);
         }
       }
     );
@@ -56,19 +60,19 @@ export class AuthComponent implements OnInit {
   /**
    * Mostra alerta com mensagem
    */
-  showNotificacao(from, align, type, message) {
-    this.toastr.warning(
-      '<span data-notify="icon" class="nc-icon nc-bell-55"></span>' +
-      '<span data-notify="message"><b>' + message + '</b></span>',
-        '',
-        {
-          timeOut: 4000,
-          closeButton: true,
-          enableHtml: true,
-          toastClass: 'alert alert-warning alert-with-icon',
-          positionClass: 'toast-' + from + '-' + align
-        }
-      );
+  showNotificacao(from, align, type, message, icon) {
+    this.toastr.show(
+      '<span data-notify="icon" class="nc-icon ' + icon + '"></span>' +
+               '<span data-notify="message"><b>' + message + '</b></span>',
+      '',
+      {
+        timeOut: 4000,
+        closeButton: true,
+        enableHtml: true,
+        toastClass: 'alert alert-' + type + ' alert-with-icon',
+        positionClass: 'toast-' + from + '-' + align
+      }
+    );
   }
 
 }

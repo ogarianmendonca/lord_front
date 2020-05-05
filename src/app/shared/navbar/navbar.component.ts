@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import { Location} from '@angular/common';
 import { AuthService } from 'app/services/auth.service';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
+import {Usuario} from '../../models/usuario.interface';
+import {environment} from '../../../environments/environment';
 
 @Component({
     moduleId: module.id,
-  // tslint:disable-next-line:component-selector
     selector: 'navbar-cmp',
     templateUrl: 'navbar.component.html'
 })
@@ -21,6 +22,9 @@ export class NavbarComponent implements OnInit {
 
   public isCollapsed = true;
   @ViewChild('navbar-cmp', {static: false}) button;
+
+  user: Usuario;
+  url = environment.api_url;
 
   constructor(location: Location,
               private renderer: Renderer,
@@ -41,6 +45,8 @@ export class NavbarComponent implements OnInit {
     this.router.events.subscribe((event) => {
       this.sidebarClose();
     });
+
+    this.buscarUsuarioLogado();
   }
 
   getTitle() {
@@ -107,6 +113,16 @@ export class NavbarComponent implements OnInit {
   }
 
   /**
+   * Busca usuário logado
+   */
+  buscarUsuarioLogado() {
+    this.authService.getUsuarioAutenticado()
+      .subscribe((resp: Usuario) => {
+        this.user = resp['usuario'];
+      });
+  }
+
+  /**
    * Metodo para fazer logout
    */
   logout(e) {
@@ -116,5 +132,4 @@ export class NavbarComponent implements OnInit {
     this.authService.logout();
     this.ngxLoader.stop();
   }
-
 }
