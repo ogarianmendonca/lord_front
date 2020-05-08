@@ -38,7 +38,7 @@ export class AuthService {
    *  Busca dados de usuario autenticado na base
    */
   getUsuarioAutenticado(): Observable<Usuario> {
-    return this.http.get<Usuario>(environment.api_url + 'api/usuario/get_user')
+    return this.http.get<Usuario>(environment.api_url + 'api/usuario/getUser')
       .pipe(tap(
         (resp: Usuario) => {
           resp['usuario']['imagem'] = environment.api_url + resp['usuario']['imagem'];

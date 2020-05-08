@@ -52,7 +52,7 @@ export class UserComponent implements OnInit {
    * Listar perfis
    */
   listarPerfis() {
-    this.usuarioService.listaPerfis()
+    this.usuarioService.listarPerfis()
       .subscribe((resp: Perfil[]) => {
         this.perfis = resp['perfis'];
       })

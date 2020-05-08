@@ -19,37 +19,37 @@ const httpOptions = {
 })
 export class UsuarioService {
 
-  private urlApiUsusario = environment.api_url + 'api/usuario/';
+  private urlApiUsuario = environment.api_url + 'api/usuario/';
 
   constructor(private http: HttpClient) { }
 
-  // buscaUsuarios (): Observable<Usuario[]> {
-  //   return this.http.get<Usuario[]>(this.urlApiUsusario + 'busca-usuarios');
+  // buscarUsuarios (): Observable<Usuario[]> {
+  //   return this.http.get<Usuario[]>(this.urlApiUsuario + 'busca-usuarios');
   // }
 
-  listaPerfis(): Observable<Perfil[]> {
-    return this.http.get<Perfil[]>(environment.api_url + 'api/perfil/buscar_todos');
+  listarPerfis(): Observable<Perfil[]> {
+    return this.http.get<Perfil[]>(environment.api_url + 'api/perfil/buscarTodos');
   }
 
   // cadastrarUsuario (dados): Observable<Usuario[]> {
-  //   return this.http.post<Usuario[]>(this.urlApiUsusario + 'novo', dados, httpOptions);
+  //   return this.http.post<Usuario[]>(this.urlApiUsuario + 'novo', dados, httpOptions);
   // }
 
   uploadImagem(arquivo) {
     const formData = new FormData();
     formData.append('imagem', arquivo[0]);
-    return this.http.post(this.urlApiUsusario + 'upload', formData);
+    return this.http.post(this.urlApiUsuario + 'upload', formData);
   }
 
   editarUsuario (id, dados): Observable<Usuario> {
-    return this.http.put<Usuario>(this.urlApiUsusario + 'editar/' + id, dados, httpOptions);
+    return this.http.put<Usuario>(this.urlApiUsuario + 'editar/' + id, dados, httpOptions);
   }
 
-  // buscaUsuarioSelecionado(id) {
-  //   return this.http.get<Usuario[]>(this.urlApiUsusario + 'detalhes/' + id);
+  // buscarUsuarioSelecionado(id) {
+  //   return this.http.get<Usuario[]>(this.urlApiUsuario + 'detalhes/' + id);
   // }
 
   // alterarStatusUsuario(id) {
-  //   return this.http.get<Usuario[]>(this.urlApiUsusario + 'alterar-status/' + id);
+  //   return this.http.get<Usuario[]>(this.urlApiUsuario + 'alterar-status/' + id);
   // }
 }
