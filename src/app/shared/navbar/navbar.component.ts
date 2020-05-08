@@ -47,6 +47,7 @@ export class NavbarComponent implements OnInit {
     });
 
     this.buscarUsuarioLogado();
+    this.atualizaUsuarioLogado();
   }
 
   getTitle() {
@@ -117,9 +118,19 @@ export class NavbarComponent implements OnInit {
    */
   buscarUsuarioLogado() {
     this.authService.getUsuarioAutenticado()
-      .subscribe((resp: Usuario) => {
-        this.user = resp['usuario'];
-      });
+    .subscribe((resp: Usuario) => {
+      this.user = resp['usuario'];
+    });
+  }
+
+  /**
+   * Atualiza dados do usuário logado
+   */
+  atualizaUsuarioLogado() {
+    this.authService.atualizarPerfil
+    .subscribe((resp: Usuario) => {
+      this.user = resp;
+    });
   }
 
   /**

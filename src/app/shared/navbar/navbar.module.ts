@@ -7,7 +7,12 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { NavbarComponent } from './navbar.component';
 
 @NgModule({
-    imports: [ RouterModule, CommonModule, NgbModule, TooltipModule.forRoot(), ],
+    imports: [
+      RouterModule,
+      CommonModule,
+      NgbModule,
+      TooltipModule.forRoot(),
+    ],
     declarations: [ NavbarComponent ],
     exports: [ NavbarComponent ]
 })

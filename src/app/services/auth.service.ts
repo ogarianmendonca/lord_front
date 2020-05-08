@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Usuario } from 'app/models/usuario.interface';
 import { tap } from 'rxjs/operators';
+import { Usuario } from 'app/models/usuario.interface';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
+
+  atualizarPerfil = new EventEmitter<Usuario>();
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -36,10 +38,11 @@ export class AuthService {
    *  Busca dados de usuario autenticado na base
    */
   getUsuarioAutenticado(): Observable<Usuario> {
-    return this.http.get<Usuario>(environment.api_url + 'api/usuario/perfil')
+    return this.http.get<Usuario>(environment.api_url + 'api/usuario/get_user')
       .pipe(tap(
         (resp: Usuario) => {
           resp['usuario']['imagem'] = environment.api_url + resp['usuario']['imagem'];
+          this.atualizarPerfil.emit(resp['usuario']);
         }));
   }
 

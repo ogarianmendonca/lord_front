@@ -84,7 +84,7 @@ export class UserComponent implements OnInit {
         this.showNotificacao('top', 'right', 'success', 'Usuário editado com sucesso!', 'nc-check-2');
         this.buscarUsuarioLogado();
       }, (err) => {
-        this.showNotificacao('top', 'right', 'warning', 'Erro ao editar usuário, tente mais tarde!', 'nc-bell-55');
+        this.showNotificacao('top', 'right', 'warning', 'Erro ao editar usuário!', 'nc-bell-55');
         this.ngxLoader.stop();
       })
     } else {
@@ -95,7 +95,7 @@ export class UserComponent implements OnInit {
           this.showNotificacao('top', 'right', 'success', 'Usuário editado com sucesso!', 'nc-check-2');
           this.buscarUsuarioLogado();
         }, (err) => {
-          this.showNotificacao('top', 'right', 'warning', 'Erro ao editar usuário, tente mais tarde!', 'nc-bell-55');
+          this.showNotificacao('top', 'right', 'warning', 'Erro ao editar usuário!', 'nc-bell-55');
           this.ngxLoader.stop();
         })
       });

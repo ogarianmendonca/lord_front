@@ -5,7 +5,7 @@ export interface Usuario {
     email: string;
     imagem: string;
     perfil_id: number;
-    status: boolean;
+    status: number;
     created_at: string;
     updated_at: string;
     perfil: Perfil[];
