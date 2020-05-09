@@ -32,19 +32,16 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/user']" tooltip="Visualizar Perfil">
             {{user?.name}}
-            <i class="nc-icon nc-single-02"></i>
-            <p>
-              <span class="d-lg-none d-md-block">Perfil</span>
-            </p>
+            <img class="avatar border-gray" src="{{user?.imagem}}" style="width: 22px; border-radius: 50px;">
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" tooltip="Avisos Pendentes">
-            <i class="nc-icon nc-bell-55"></i>
+          <a class="nav-link" tooltip="Avisos">
             <p>
               <span class="d-lg-none d-md-block">Avisos</span>
             </p>
+            <i class="nc-icon nc-bell-55"></i>
           </a>
         </li>
 

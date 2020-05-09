@@ -41,7 +41,7 @@ export class AuthService {
     return this.http.get<Usuario>(environment.api_url + 'api/usuario/getUser')
       .pipe(tap(
         (resp: Usuario) => {
-          resp['usuario']['imagem'] = environment.api_url + resp['usuario']['imagem'];
+          // resp['usuario']['imagem'] = environment.api_url + resp['usuario']['imagem'];
           this.atualizarPerfil.emit(resp['usuario']);
         }));
   }
