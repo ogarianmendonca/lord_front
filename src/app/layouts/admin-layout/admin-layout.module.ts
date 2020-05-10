@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {TooltipModule} from 'ngx-bootstrap/tooltip';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
 
@@ -14,7 +15,8 @@ import {IconsComponent} from '../../pages/icons/icons.component';
 import {NotificationsComponent} from '../../pages/notifications/notifications.component';
 import {UpgradeComponent} from '../../pages/upgrade/upgrade.component';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// Novos Componentes
+import { UsuariosComponent } from 'app/pages/usuarios/usuarios.component';
 
 @NgModule({
   imports: [
@@ -32,6 +34,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TypographyComponent,
     IconsComponent,
     NotificationsComponent,
+    UsuariosComponent
   ]
 })
 

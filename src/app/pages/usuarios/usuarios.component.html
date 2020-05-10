@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"> Listagem de Usuários</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+              </th>
+              <th>
+                Nome
+              </th>
+              <th>
+                E-mail
+              </th>
+              <th>
+                Status
+              </th>
+              <th>
+                Cadastro
+              </th>
+              <th>
+                Ações
+              </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let usuario of usuarios">
+                <td>
+                  <img class="avatar border-gray" src="{{usuario?.imagem}}">
+                </td>
+                <td>
+                  {{usuario?.name}}
+                </td>
+                <td>
+                  {{usuario?.email}}
+                </td>
+                <td>
+                  <span *ngIf="usuario?.status == 1" style="color: #17a2b8;">
+                    Ativo
+                  </span>
+                  <span *ngIf="usuario?.status != 1" style="color: #dc3545;">
+                    Inativo
+                  </span>
+                </td>
+                <td>
+                  {{usuario?.created_at | date:'dd/MM/y'}}
+                </td>
+                <td class="td-actions">
+                  <div class="btn-group" role="group">
+                    <a [routerLink]="['/usuarios/editar/', usuario?.id]" type="button" tooltip="Visualizar/Editar Usuário" class="btn btn-icon btn-info">
+                      <i class="fa fa-eye" style="font-size: 18px;"></i>
+                    </a>
+                    <a (click)="alterarStatus(usuario?.id)" type="button" tooltip="Ativar ou inativar usuário" class="btn btn-icon btn-warning">
+                      <i class="fa fa-refresh" style="font-size: 18px; color: white;"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

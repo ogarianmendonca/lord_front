@@ -8,12 +8,14 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard',     title: 'Dashboard',         icon: 'nc-bank',       class: '' },
-    { path: '/user',          title: 'Meu Perfil',      icon: 'nc-single-02',  class: '' },
+    { path: '/dashboard',     title: 'Dashboard',          icon: 'nc-bank',       class: '' },
+    { path: '/user',          title: 'Meu Perfil',         icon: 'nc-single-02',  class: '' },
+    { path: '/usuarios',      title: 'Listagem de Usuários',  icon: 'nc-tile-56',    class: '' },
     { path: '/icons',         title: 'Ícones',             icon: 'nc-diamond',    class: '' },
-    { path: '/notifications', title: 'Notificações',     icon: 'nc-bell-55',    class: '' },
-    { path: '/table',         title: 'Tabelas e Listas',        icon: 'nc-tile-56',    class: '' },
-    { path: '/typography',    title: 'Tipografia',        icon: 'nc-caps-small', class: '' },
+    { path: '/notifications', title: 'Notificações',       icon: 'nc-bell-55',    class: '' },
+    { path: '/table',         title: 'Tabelas e Listas',   icon: 'nc-tile-56',    class: '' },
+    { path: '/typography',    title: 'Tipografia',         icon: 'nc-caps-small', class: '' },
+
     // { path: '/upgrade',       title: 'Upgrade to PRO',    icon: 'nc-spaceship',  class: 'active-pro' },
 ];
 

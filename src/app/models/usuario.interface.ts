@@ -1,6 +1,7 @@
 import { Perfil } from './perfil.interface';
 
 export interface Usuario {
+    id: number;
     name: string;
     email: string;
     imagem: string;

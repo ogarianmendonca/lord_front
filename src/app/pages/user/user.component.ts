@@ -54,7 +54,7 @@ export class UserComponent implements OnInit {
   listarPerfis() {
     this.usuarioService.listarPerfis()
       .subscribe((resp: Perfil[]) => {
-        this.perfis = resp['perfis'];
+        this.perfis = resp;
       })
   }
 

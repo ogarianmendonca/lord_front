@@ -15,6 +15,10 @@ export class AppErrorHandle extends ErrorHandler {
      */
     handleError(errorResponse: HttpErrorResponse | any) {
         if (errorResponse instanceof HttpErrorResponse) {
+            if (errorResponse.status === 401 && errorResponse.statusText === "Unauthorized") {
+                this.redirecionaLogin();
+            }
+
             const error = (typeof errorResponse.error !== 'object') ? JSON.parse(errorResponse.error) : errorResponse.error;
 
             if (error.error === 'The token has been blacklisted') {
@@ -25,7 +29,7 @@ export class AppErrorHandle extends ErrorHandler {
                 this.redirecionaLogin();
             }
 
-            if (errorResponse.status === 400 && (
+            if ((errorResponse.status === 400 || errorResponse.status === 401) && (
               error.error === 'token_expired' ||
               error.error === 'token_invalid' ||
               error.error === 'A token is required' ||
