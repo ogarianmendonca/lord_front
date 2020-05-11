@@ -38,10 +38,10 @@
                   {{usuario?.email}}
                 </td>
                 <td>
-                  <span *ngIf="usuario?.status == 1" style="color: #17a2b8;">
+                  <span *ngIf="usuario?.status === '1'" class="text-success" style="font-weight: 600;">
                     Ativo
                   </span>
-                  <span *ngIf="usuario?.status != 1" style="color: #dc3545;">
+                  <span *ngIf="usuario?.status === '0'" class="text-danger" style="font-weight: 600">
                     Inativo
                   </span>
                 </td>
@@ -50,11 +50,14 @@
                 </td>
                 <td class="td-actions">
                   <div class="btn-group" role="group">
-                    <a [routerLink]="['/usuarios/editar/', usuario?.id]" type="button" tooltip="Visualizar/Editar Usuário" class="btn btn-icon btn-info">
+                    <a [routerLink]="['/usuarios/editar/', usuario?.id]" type="button" tooltip="Visualizar/Editar Usuário" class="btn btn-sm btn-primary">
                       <i class="fa fa-eye" style="font-size: 18px;"></i>
                     </a>
-                    <a (click)="alterarStatus(usuario?.id)" type="button" tooltip="Ativar ou inativar usuário" class="btn btn-icon btn-warning">
-                      <i class="fa fa-refresh" style="font-size: 18px; color: white;"></i>
+                    <a (click)="alterarStatus(usuario?.id)" type="button" 
+                        tooltip="Ativar ou inativar usuário" 
+                        class="btn btn-sm"
+                        [ngClass]="{'btn-danger': usuario?.status === '0', 'btn-success': usuario?.status === '1'}">
+                      <i class="fa fa-refresh" style="font-size: 18px;"></i>
                     </a>
                   </div>
                 </td>

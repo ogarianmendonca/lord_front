@@ -24,11 +24,11 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
   buscarUsuarios (): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.urlApiUsuario + 'buscarTodos');
+    return this.http.get<Usuario[]>(this.urlApiUsuario + 'buscarUsuarios');
   }
 
   listarPerfis(): Observable<Perfil[]> {
-    return this.http.get<Perfil[]>(environment.api_url + 'api/perfil/buscarTodos');
+    return this.http.get<Perfil[]>(environment.api_url + 'api/perfil/buscarPerfis');
   }
 
   // cadastrarUsuario (dados): Observable<Usuario[]> {

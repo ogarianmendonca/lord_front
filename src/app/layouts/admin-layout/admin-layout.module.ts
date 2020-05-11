@@ -17,6 +17,8 @@ import {UpgradeComponent} from '../../pages/upgrade/upgrade.component';
 
 // Novos Componentes
 import { UsuariosComponent } from 'app/pages/usuarios/usuarios.component';
+import { UsuariosCreateComponent } from 'app/pages/usuarios/usuarios-create/usuarios-create.component';
+import { UsuariosEditComponent } from 'app/pages/usuarios/usuarios-edit/usuarios-edit.component';
 
 @NgModule({
   imports: [
@@ -34,7 +36,9 @@ import { UsuariosComponent } from 'app/pages/usuarios/usuarios.component';
     TypographyComponent,
     IconsComponent,
     NotificationsComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    UsuariosCreateComponent,
+    UsuariosEditComponent
   ]
 })
 
