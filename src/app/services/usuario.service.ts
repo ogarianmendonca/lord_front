@@ -49,7 +49,7 @@ export class UsuarioService {
   //   return this.http.get<Usuario[]>(this.urlApiUsuario + 'detalhes/' + id);
   // }
 
-  // alterarStatusUsuario(id) {
-  //   return this.http.get<Usuario[]>(this.urlApiUsuario + 'alterar-status/' + id);
-  // }
+  alterarStatusUsuario(id) {
+    return this.http.put(this.urlApiUsuario + 'alterarStatus/' + id, [], httpOptions);
+  }
 }

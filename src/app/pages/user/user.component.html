@@ -22,8 +22,8 @@
       <div class="card-footer">
         <hr>
         <div class="button-container text-center">
-          <span [hidden]="user?.status === '0'" style="color:green;"><b>Usuário Ativo</b></span>
-          <span [hidden]="user?.status === '1'" style="color:red;"><b>Usuário Inativo</b></span>
+          <span [hidden]="user?.status == false" style="color:green;"><b>Usuário Ativo</b></span>
+          <span [hidden]="user?.status == true" style="color:red;"><b>Usuário Inativo</b></span>
         </div>
       </div>
     </div>
@@ -68,8 +68,8 @@
                 <label>Status</label>
                 <select id="status" class="form-control" name="status" [ngModel]="user?.status">
                   <option value="" disabled>Selecione</option>
-                  <option value="1">Ativo</option>
-                  <option value="0">Inativo</option>
+                  <option value="true">Ativo</option>
+                  <option value="false">Inativo</option>
                 </select>
               </div>
             </div>

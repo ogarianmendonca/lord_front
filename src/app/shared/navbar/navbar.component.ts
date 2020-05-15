@@ -120,6 +120,10 @@ export class NavbarComponent implements OnInit {
     this.authService.getUsuarioAutenticado()
     .subscribe((resp: Usuario) => {
       this.user = resp['usuario'];
+
+      if(this.user.status == false) {
+        this.authService.logout();
+      }
     });
   }
 

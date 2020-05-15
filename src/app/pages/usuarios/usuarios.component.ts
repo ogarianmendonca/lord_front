@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { UsuarioService } from 'app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Usuario } from 'app/models/usuario.interface';
 
 @Component({
@@ -12,10 +13,14 @@ import { Usuario } from 'app/models/usuario.interface';
 export class UsuariosComponent implements OnInit {
 
   usuarios: Usuario[];
+  modalRef: BsModalRef;
+  statusUsuarioModal: boolean;
+  idUsuario: number;
 
   constructor(private ngxLoader: NgxUiLoaderService,
-              private usuarioService: UsuarioService,
-              private toastr: ToastrService) { }
+    private usuarioService: UsuarioService,
+    private toastr: ToastrService,
+    private modalService: BsModalService) { }
 
   ngOnInit() {
     this.buscarUsuarios();
@@ -34,12 +39,44 @@ export class UsuariosComponent implements OnInit {
       });
   }
 
-  visualizarUsuario() {
-    console.log("visualizar usuário");
+  openModal(template: TemplateRef<any>, usuario: Usuario) {
+    this.modalRef = this.modalService.show(template);
+    this.statusUsuarioModal = usuario.status;
+    this.idUsuario = usuario.id;
   }
 
-  alterarStatus() {
-    console.log("alterar status usuário");
+  /**
+   * Alterar status do usuário
+   */
+  alterarStatus(idUsuario) {
+    this.modalRef.hide()
+    this.ngxLoader.start();
+
+    this.usuarioService.alterarStatusUsuario(idUsuario)
+      .subscribe((resp: any) => {
+        this.showNotificacao('top', 'right', 'success', 'Status alterado com sucesso!', 'nc-check-2');
+        this.buscarUsuarios();
+      }, (error: any) => {
+        this.showNotificacao('top', 'right', 'warning', error.error[0], 'nc-bell-55');
+        this.ngxLoader.stop();
+      });
   }
 
+  /**
+   * Mostra alerta com mensagem
+   */
+  showNotificacao(from, align, type, message, icon) {
+    this.toastr.show(
+      '<span data-notify="icon" class="nc-icon ' + icon + '"></span>' +
+      '<span data-notify="message"><b>' + message + '</b></span>',
+      '',
+      {
+        timeOut: 4000,
+        closeButton: true,
+        enableHtml: true,
+        toastClass: 'alert alert-' + type + ' alert-with-icon',
+        positionClass: 'toast-' + from + '-' + align
+      }
+    );
+  }
 }

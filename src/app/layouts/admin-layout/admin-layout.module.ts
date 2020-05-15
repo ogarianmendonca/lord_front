@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
@@ -27,6 +28,7 @@ import { UsuariosEditComponent } from 'app/pages/usuarios/usuarios-edit/usuarios
     FormsModule,
     NgbModule,
     TooltipModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   declarations: [
     DashboardComponent,

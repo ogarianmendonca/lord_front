@@ -2,7 +2,16 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title"> Listagem de Usuários</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <h4 class="card-title">Usuários</h4>
+          </div>
+          <div class="col-md-6 text-right">
+            <a [routerLink]="['/usuarios/cadastrar/']" class="btn btn-primary btn-round">
+              <i class="nc-icon nc-simple-add"></i> Cadastrar
+            </a>
+          </div>
+        </div>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -15,6 +24,9 @@
               </th>
               <th>
                 E-mail
+              </th>
+              <th>
+                Perfil
               </th>
               <th>
                 Status
@@ -38,25 +50,28 @@
                   {{usuario?.email}}
                 </td>
                 <td>
-                  <span *ngIf="usuario?.status === '1'" class="text-success" style="font-weight: 600;">
+                  {{usuario?.perfil['descricao']}}
+                </td>
+                <td>
+                  <span *ngIf="usuario?.status == true" class="text-success" style="font-weight: 600;">
                     Ativo
                   </span>
-                  <span *ngIf="usuario?.status === '0'" class="text-danger" style="font-weight: 600">
+                  <span *ngIf="usuario?.status == false" class="text-danger" style="font-weight: 600">
                     Inativo
                   </span>
                 </td>
                 <td>
                   {{usuario?.created_at | date:'dd/MM/y'}}
                 </td>
-                <td class="td-actions">
+                <td>
                   <div class="btn-group" role="group">
                     <a [routerLink]="['/usuarios/editar/', usuario?.id]" type="button" tooltip="Visualizar/Editar Usuário" class="btn btn-sm btn-primary">
                       <i class="fa fa-eye" style="font-size: 18px;"></i>
                     </a>
-                    <a (click)="alterarStatus(usuario?.id)" type="button" 
+                    <a (click)="openModal(template, usuario)" type="button" 
                         tooltip="Ativar ou inativar usuário" 
                         class="btn btn-sm"
-                        [ngClass]="{'btn-danger': usuario?.status === '0', 'btn-success': usuario?.status === '1'}">
+                        [ngClass]="{'btn-danger': usuario?.status == false, 'btn-success': usuario?.status == true}">
                       <i class="fa fa-refresh" style="font-size: 18px;"></i>
                     </a>
                   </div>
@@ -69,3 +84,20 @@
     </div>
   </div>
 </div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h6 class="modal-title pull-left">Alterar status</h6>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Deseja <b *ngIf="statusUsuarioModal == false">ativar</b> <b *ngIf="statusUsuarioModal == true">inativar</b> este usuário?
+  
+    <div class="text-right">
+      <button type="button" class="btn btn-primary" (click)="modalRef.hide()">Cancelar</button>
+      <button type="button" class="btn btn-danger" (click)="alterarStatus(idUsuario)">Sim</button>
+    </div>
+  </div>
+</ng-template>
