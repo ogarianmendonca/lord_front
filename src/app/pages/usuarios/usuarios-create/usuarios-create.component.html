@@ -1,3 +1,112 @@
-<p>
-  usuarios-create works!
-</p>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-6">
+            <h5 class="card-title">Cadastrar Usuários</h5>
+          </div>
+          <div class="col-md-6 text-right">
+            <a [routerLink]="['/usuarios/listar']" class="btn btn-primary btn-round">
+              Voltar
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="formularioUsuario" (ngSubmit)="cadastrarUsuario()">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Nome</label>
+                <input formControlName="name" type="text" class="form-control" placeholder="Digite o nome do usuário">
+                <span *ngIf="formularioUsuario.controls['name'].invalid && (formularioUsuario.controls['name'].touched)"
+                  class="text-danger">
+                  Campo obrigatório!
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>E-mail</label>
+                <input formControlName="email" type="email" class="form-control"
+                  placeholder="Digite o e-mail do usuário">
+                <span *ngIf="formularioUsuario.controls['email'].invalid && (formularioUsuario.controls['email'].touched)"
+                  class="text-danger">
+                  Campo obrigatório!
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Perfil</label>
+                <select formControlName="perfil_id" class="form-control">
+                  <option value="" disabled>Selecione</option>
+                  <option *ngFor="let perfil of perfis" [value]="perfil?.id">{{perfil.descricao}}</option>
+                </select>
+                <span *ngIf="formularioUsuario.controls['perfil_id'].invalid && (formularioUsuario.controls['perfil_id'].touched)"
+                  class="text-danger">
+                  Campo obrigatório!
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Status</label>
+                <select class="form-control" disabled>
+                  <option value="" disabled>Ativo</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Imagem do Perfil</label>
+                <br>
+                <div class="fileUpload btn btn-primary">
+                  <span>Selecionar Imagem</span>
+                  <input type="file" class="upload" id="imagem" name="imagem" (change)="carregarImagem($event)">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Nova Senha</label>
+                <input formControlName="password" type="password" class="form-control" placeholder="******">
+                <span *ngIf="formularioUsuario.controls['password'].invalid && (formularioUsuario.controls['password'].touched)"
+                  class="text-danger">
+                  Campo obrigatório!
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Confirmar Nova Senha</label>
+                <input formControlName="confimarSenha" type="password" class="form-control" placeholder="******">
+                <span *ngIf="formularioUsuario.controls['confimarSenha'].invalid && (formularioUsuario.controls['confimarSenha'].touched)"
+                  class="text-danger">
+                  Campo obrigatório!
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button [disabled]="formularioUsuario.invalid" type="submit"
+                class="btn btn-primary btn-round">Salvar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

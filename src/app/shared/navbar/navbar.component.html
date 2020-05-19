@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
   <div class="container-fluid">
     <div class="navbar-wrapper">
@@ -11,14 +10,14 @@
       </div>
       <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a>
     </div>
-    <button class="navbar-toggler" type="button" (click)="collapse()"
-      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+    <button class="navbar-toggler" type="button" (click)="collapse()" [attr.aria-expanded]="!isCollapsed"
+      aria-controls="collapseExample">
       <span class="navbar-toggler-bar navbar-kebab"></span>
       <span class="navbar-toggler-bar navbar-kebab"></span>
       <span class="navbar-toggler-bar navbar-kebab"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="collapseExample" [ngbCollapse]="isCollapsed">
-      <form>
+      <!-- <form>
         <div class="input-group no-border">
           <input type="text" value="" class="form-control" placeholder="Pesquisar...">
           <div class="input-group-append">
@@ -27,12 +26,15 @@
             </div>
           </div>
         </div>
-      </form>
+      </form> -->
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/user']" tooltip="Visualizar Perfil">
             {{user?.name}}
-            <img class="avatar border-gray" src="{{user?.imagem}}" style="width: 22px; border-radius: 50px;">
+            <img *ngIf="user?.imagem !== 'sem_imagem'" src="{{user?.imagem}}" class="avatar border-gray"
+              style="width: 22px; border-radius: 50px;">
+            <img *ngIf="user?.imagem === 'sem_imagem'" src="assets/img/default-avatar.png" class="avatar border-gray"
+              style="width: 22px; border-radius: 50px;">
           </a>
         </li>
 
@@ -47,7 +49,8 @@
 
         <li class="nav-item">
           <a class="nav-link" (click)="logout($event)" tooltip="Sair da Aplicação">
-            <span class="badge badge-info badge-sair" style="padding: 6px 8px !important; cursor: pointer !important;">Sair</span>
+            <span class="badge badge-info badge-sair"
+              style="padding: 6px 8px !important; cursor: pointer !important;">Sair</span>
           </a>
         </li>
       </ul>

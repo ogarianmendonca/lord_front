@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {AuthService} from '../../services/auth.service';
-import {NgxUiLoaderService} from 'ngx-ui-loader';
-import {UsuarioService} from '../../services/usuario.service';
-import {ToastrService} from 'ngx-toastr';
-import {Usuario} from '../../models/usuario.interface';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { UsuarioService } from '../../services/usuario.service';
+import { ToastrService } from 'ngx-toastr';
+import { Usuario } from '../../models/usuario.interface';
 import { Perfil } from '../../models/perfil.interface';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -19,15 +20,16 @@ export class UserComponent implements OnInit {
   user: Usuario;
   perfis: Perfil[];
   imagem: Set<File>;
+  formularioUsuario: FormGroup;
 
   message: string;
   icon: string;
 
   constructor(private authService: AuthService,
-              private router: ActivatedRoute,
-              private ngxLoader: NgxUiLoaderService,
-              private usuarioService: UsuarioService,
-              private toastr: ToastrService) {
+    private formBuilder: FormBuilder,
+    private ngxLoader: NgxUiLoaderService,
+    private usuarioService: UsuarioService,
+    private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -44,8 +46,24 @@ export class UserComponent implements OnInit {
     this.authService.getUsuarioAutenticado()
       .subscribe((resp: Usuario) => {
         this.user = resp['usuario'];
+        this.validaFormulario(this.user);
         this.ngxLoader.stop();
       });
+  }
+
+  /**
+   * Preenche e valida formulário
+   */
+  validaFormulario(user) {
+    this.formularioUsuario = this.formBuilder.group({
+      name: [user.name, Validators.required],
+      email: [user.email, Validators.required],
+      perfil_id: [user.perfil_id],
+      status: [user.status],
+      imagem: [''],
+      password: [''],
+      confimarSenha: ['']
+    });
   }
 
   /**
@@ -67,20 +85,20 @@ export class UserComponent implements OnInit {
 
   /**
    * Editar usuário logado
-   * @param form
    */
-  editarUsuario(form) {
+  editarUsuario() {
     this.ngxLoader.start();
 
-    if (form.value.password !== form.value.confimarSenha) {
+    if (this.formularioUsuario.value.password !== this.formularioUsuario.value.confimarSenha) {
       this.showNotificacao('top', 'right', 'warning', 'As senhas não conferem!', 'nc-bell-55');
+      this.ngxLoader.stop();
       return false;
     }
 
     const id = this.user['id'];
 
     if (!this.imagem) {
-      this.usuarioService.editarUsuario(id, form.value).subscribe((resp: Usuario) => {
+      this.usuarioService.editarUsuario(id, this.formularioUsuario.value).subscribe((resp: Usuario) => {
         this.showNotificacao('top', 'right', 'success', 'Usuário editado com sucesso!', 'nc-check-2');
         this.buscarUsuarioLogado();
       }, (err) => {
@@ -89,9 +107,9 @@ export class UserComponent implements OnInit {
       })
     } else {
       this.usuarioService.uploadImagem(this.imagem).subscribe(resImg => {
-        form.value.imagem = resImg['imagem'];
-    
-        this.usuarioService.editarUsuario(id, form.value).subscribe((resp: Usuario) => {
+        this.formularioUsuario.value.imagem = resImg['imagem'];
+
+        this.usuarioService.editarUsuario(id, this.formularioUsuario.value).subscribe((resp: Usuario) => {
           this.showNotificacao('top', 'right', 'success', 'Usuário editado com sucesso!', 'nc-check-2');
           this.buscarUsuarioLogado();
         }, (err) => {
@@ -119,4 +137,5 @@ export class UserComponent implements OnInit {
       }
     );
   }
+
 }

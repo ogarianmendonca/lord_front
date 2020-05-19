@@ -31,9 +31,9 @@ export class UsuarioService {
     return this.http.get<Perfil[]>(environment.api_url + 'api/perfil/buscarPerfis');
   }
 
-  // cadastrarUsuario (dados): Observable<Usuario[]> {
-  //   return this.http.post<Usuario[]>(this.urlApiUsuario + 'novo', dados, httpOptions);
-  // }
+  cadastrarUsuario (dados): Observable<Usuario> {
+    return this.http.post<Usuario>(this.urlApiUsuario + 'cadastrar', dados, httpOptions);
+  }
 
   uploadImagem(arquivo) {
     const formData = new FormData();
@@ -45,9 +45,9 @@ export class UsuarioService {
     return this.http.put<Usuario>(this.urlApiUsuario + 'editar/' + id, dados, httpOptions);
   }
 
-  // buscarUsuarioSelecionado(id) {
-  //   return this.http.get<Usuario[]>(this.urlApiUsuario + 'detalhes/' + id);
-  // }
+  buscarUsuarioSelecionado(id) {
+    return this.http.get<Usuario>(this.urlApiUsuario + 'visualizarUsuario/' + id);
+  }
 
   alterarStatusUsuario(id) {
     return this.http.put(this.urlApiUsuario + 'alterarStatus/' + id, [], httpOptions);

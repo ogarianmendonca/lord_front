@@ -14,7 +14,6 @@ import { ToastrService } from 'ngx-toastr';
 export class AuthComponent implements OnInit {
 
   formulario: FormGroup;
-
   icon: string;
 
   constructor(private formBuilder: FormBuilder,

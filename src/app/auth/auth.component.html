@@ -17,16 +17,15 @@
           <form [formGroup]="formulario" novalidate>
             <div class="form-group has-feedback" [ngClass]="{'has-success': formulario.controls['email'].valid, 'has-error': formulario.controls['email'].invalid && (formulario.controls['email'].touched || formulario.controls['email'].dirty)}">
               <input type="email" formControlName="email" class="form-control" id="InputEmail" placeholder="E-mail">
-              <span *ngIf="formulario.controls['email'].valid" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-              <span *ngIf="formulario.controls['email'].invalid && (formulario.controls['email'].touched || formulario.controls['email'].dirty)">
-                <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                <span class="text-danger">E-mail inválido.</span>
+              <span *ngIf="formulario.controls['email'].valid" class="fa fa-check form-control-feedback" aria-hidden="true"></span>
+              <span *ngIf="formulario.controls['email'].invalid && (formulario.controls['email'].touched || formulario.controls['email'].dirty)" class="text-danger">
+                E-mail inválido!
               </span>
             </div>
 
             <div class="form-group" [ngClass]="{'has-success': formulario.controls['password'].valid, 'has-error': formulario.controls['password'].invalid && (formulario.controls['password'].touched || formulario.controls['password'].dirty)}">
               <input type="password" formControlName="password" class="form-control" id="InputPassword" placeholder="Senha">
-              <span class="text-danger" *ngIf="formulario.controls['password'].invalid && (formulario.controls['password'].touched || formulario.controls['password'].dirty)">Campo obrigatório.</span>
+              <span class="text-danger" *ngIf="formulario.controls['password'].invalid && (formulario.controls['password'].touched || formulario.controls['password'].dirty)">Campo obrigatório!</span>
             </div>
             <button type="submit" class="btn btn-info btn-fill pull-right" [disabled]="formulario.invalid" (click)="logar()">Entrar</button>
           </form>
@@ -38,6 +37,6 @@
   </div>
 
   <div class="text-center">
-    <p>Desenvolvido por Lord Web Technology</p>
+    <p>Desenvolvido por O. M. M.</p>
   </div>
 </div>
