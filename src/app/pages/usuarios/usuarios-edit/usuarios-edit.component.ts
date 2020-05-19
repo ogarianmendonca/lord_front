@@ -39,9 +39,11 @@ export class UsuariosEditComponent implements OnInit {
     this.getUsuarioStorage();
   }
 
+  /**
+   * Recupera dados do usuário logado
+   */
   getUsuarioStorage() {
     this.user = this.authService.getUsuarioStorage();
-    console.log(this.user.perfil['descricao']);
   }
 
   /**
