@@ -42,8 +42,16 @@ export class AuthService {
       .pipe(tap(
         (resp: Usuario) => {
           // resp['usuario']['imagem'] = environment.api_url + resp['usuario']['imagem'];
+          localStorage.setItem('user', btoa(JSON.stringify(resp['usuario'])));
           this.atualizarPerfil.emit(resp['usuario']);
         }));
+  }
+
+  /**
+   * Pega dados do usuario no storage
+   */
+  getUsuarioStorage(): Usuario {
+    return localStorage.getItem('user') ? JSON.parse(atob(localStorage.getItem('user'))) : null;
   }
 
   /**

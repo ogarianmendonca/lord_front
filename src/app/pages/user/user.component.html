@@ -64,7 +64,7 @@
           </div>
 
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6" *ngIf="user?.perfil['descricao'] !== 'USUARIO' && user?.perfil['descricao'] !== 'COORDENADOR'">
               <div class="form-group">
                 <label>Perfil</label>
                 <select formControlName="perfil_id" class="form-control">

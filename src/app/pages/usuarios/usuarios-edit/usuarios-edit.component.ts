@@ -19,6 +19,7 @@ export class UsuariosEditComponent implements OnInit {
   perfis: Perfil[];
   imagem: Set<File>;
   formularioUsuario: FormGroup;
+  user: Usuario;
 
   message: string;
   icon: string;
@@ -28,12 +29,19 @@ export class UsuariosEditComponent implements OnInit {
               private router: Router,
               private ngxLoader: NgxUiLoaderService,
               private usuarioService: UsuarioService,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
     this.buscarUsuarioSelecionado();
     this.listarPerfis();
+    this.getUsuarioStorage();
+  }
+
+  getUsuarioStorage() {
+    this.user = this.authService.getUsuarioStorage();
+    console.log(this.user.perfil['descricao']);
   }
 
   /**
