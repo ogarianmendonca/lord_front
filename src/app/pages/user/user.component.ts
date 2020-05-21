@@ -56,8 +56,8 @@ export class UserComponent implements OnInit {
    */
   validaFormulario(user) {
     this.formularioUsuario = this.formBuilder.group({
-      name: [user.name, Validators.required],
-      email: [user.email, Validators.required],
+      name: [user.name, [Validators.required]],
+      email: [user.email, [Validators.required, Validators.email]],
       perfil_id: [user.perfil_id],
       status: [user.status],
       imagem: [''],

@@ -41,12 +41,12 @@ export class UsuariosCreateComponent implements OnInit {
    */
   validaFormulario() {
     this.formularioUsuario = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required],
-      perfil_id: ['', Validators.required],
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      perfil_id: ['', [Validators.required]],
       imagem: [''],
-      password: ['', Validators.required],
-      confimarSenha: ['', Validators.required]
+      password: ['', [Validators.required]],
+      confimarSenha: ['', [Validators.required]]
     });
   }
 

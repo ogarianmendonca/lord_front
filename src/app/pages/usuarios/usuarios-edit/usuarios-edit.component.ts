@@ -66,8 +66,8 @@ export class UsuariosEditComponent implements OnInit {
    */
   validaFormulario(usuario) {
     this.formularioUsuario = this.formBuilder.group({
-      name: [usuario.name, Validators.required],
-      email: [usuario.email, Validators.required],
+      name: [usuario.name, [Validators.required]],
+      email: [usuario.email, [Validators.required, Validators.email]],
       perfil_id: [usuario.perfil_id],
       status: [usuario.status],
       imagem: [''],

@@ -19,22 +19,26 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Nome</label>
-                <input formControlName="name" type="text" class="form-control" placeholder="Digite o nome do usuário">
-                <span *ngIf="formularioUsuario.controls['name'].invalid && (formularioUsuario.controls['name'].touched)"
-                  class="text-danger">
+                <input formControlName="name" type="text" class="form-control" 
+                  [ngClass]="{'is-invalid': formularioUsuario.get('name').errors && formularioUsuario.get('name').touched}" 
+                  placeholder="Digite o nome do usuário">
+                <div *ngIf="formularioUsuario.get('name').hasError('required') && formularioUsuario.get('name').touched" class="invalid-feedback">
                   Campo obrigatório!
-                </span>
+                </div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>E-mail</label>
                 <input formControlName="email" type="email" class="form-control"
+                  [ngClass]="{'is-invalid': formularioUsuario.get('email').errors && formularioUsuario.get('email').touched}"
                   placeholder="Digite o e-mail do usuário">
-                <span *ngIf="formularioUsuario.controls['email'].invalid && (formularioUsuario.controls['email'].touched)"
-                  class="text-danger">
+                <div *ngIf="formularioUsuario.get('email').hasError('required') && formularioUsuario.get('email').touched" class="invalid-feedback">
                   Campo obrigatório!
-                </span>
+                </div>
+                <div *ngIf="formularioUsuario.get('email').hasError('email') && formularioUsuario.get('email').touched" class="invalid-feedback">
+                  Email inválido!
+                </div>
               </div>
             </div>
           </div>
@@ -43,14 +47,14 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Perfil</label>
-                <select formControlName="perfil_id" class="form-control">
+                <select formControlName="perfil_id" class="form-control" 
+                  [ngClass]="{'is-invalid': formularioUsuario.get('perfil_id').errors && formularioUsuario.get('perfil_id').touched}">
                   <option value="" disabled>Selecione</option>
                   <option *ngFor="let perfil of perfis" [value]="perfil?.id">{{perfil.descricao}}</option>
                 </select>
-                <span *ngIf="formularioUsuario.controls['perfil_id'].invalid && (formularioUsuario.controls['perfil_id'].touched)"
-                  class="text-danger">
+                <div *ngIf="formularioUsuario.get('perfil_id').hasError('required') && formularioUsuario.get('perfil_id').touched" class="invalid-feedback">
                   Campo obrigatório!
-                </span>
+                </div>
               </div>
             </div>
             <div class="col-md-6">
@@ -64,7 +68,7 @@
           </div>
 
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="form-group">
                 <label>Imagem do Perfil</label>
                 <br>
@@ -80,21 +84,23 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Nova Senha</label>
-                <input formControlName="password" type="password" class="form-control" placeholder="******">
-                <span *ngIf="formularioUsuario.controls['password'].invalid && (formularioUsuario.controls['password'].touched)"
-                  class="text-danger">
+                <input formControlName="password" type="password" class="form-control" 
+                  [ngClass]="{'is-invalid': formularioUsuario.get('password').errors && formularioUsuario.get('password').touched}"
+                  placeholder="******">
+                <div *ngIf="formularioUsuario.get('password').hasError('required') && formularioUsuario.get('password').touched" class="invalid-feedback">
                   Campo obrigatório!
-                </span>
+                </div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>Confirmar Nova Senha</label>
-                <input formControlName="confimarSenha" type="password" class="form-control" placeholder="******">
-                <span *ngIf="formularioUsuario.controls['confimarSenha'].invalid && (formularioUsuario.controls['confimarSenha'].touched)"
-                  class="text-danger">
+                <input formControlName="confimarSenha" type="password" class="form-control" 
+                  [ngClass]="{'is-invalid': formularioUsuario.get('confimarSenha').errors && formularioUsuario.get('confimarSenha').touched}"
+                  placeholder="******">
+                <div *ngIf="formularioUsuario.get('confimarSenha').hasError('required') && formularioUsuario.get('confimarSenha').touched" class="invalid-feedback">
                   Campo obrigatório!
-                </span>
+                </div>
               </div>
             </div>
           </div>
