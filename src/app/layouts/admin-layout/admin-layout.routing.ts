@@ -28,7 +28,7 @@ export const AdminLayoutRoutes: Routes = [
         path: 'usuarios',        
         component: UsuariosComponent,
         children: [
-            { path: 'listar',           component: UsuariosListComponent },
+            { path: 'listar',          component: UsuariosListComponent },
             { path: 'cadastrar',       component: UsuariosCreateComponent },
             { path: 'editar/:id',      component: UsuariosEditComponent }
         ]

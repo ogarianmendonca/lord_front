@@ -17,13 +17,35 @@ export class UsuariosListComponent implements OnInit {
   statusUsuarioModal: boolean;
   idUsuario: number;
 
+  usuariosFiltrados: Usuario[];
+  _filtroLista = '';
+  
   constructor(private ngxLoader: NgxUiLoaderService,
     private usuarioService: UsuarioService,
     private toastr: ToastrService,
     private modalService: BsModalService) { }
 
+  get filtroLista(): string {
+    return this._filtroLista;
+  }
+
+  set filtroLista(value: string) {
+    this._filtroLista = value;
+    this.usuariosFiltrados = this.filtroLista ? this.filtrarUsuario(this.filtroLista) : this.usuarios;
+  }
+
   ngOnInit() {
     this.buscarUsuarios();
+  }
+
+  /**
+   * Filtrar busca de usuários
+   */
+  filtrarUsuario(filtrarPor: string): Usuario[] {
+    filtrarPor = filtrarPor.toLocaleLowerCase();
+    return this.usuarios.filter(
+      usuario => usuario.name.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+    );
   }
 
   /**
@@ -35,6 +57,7 @@ export class UsuariosListComponent implements OnInit {
     this.usuarioService.buscarUsuarios()
       .subscribe((resp: Usuario[]) => {
         this.usuarios = resp;
+        this.usuariosFiltrados = resp;
         this.ngxLoader.stop();
       });
   }

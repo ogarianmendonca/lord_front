@@ -5,12 +5,14 @@ export interface RouteInfo {
     title: string;
     icon: string;
     class: string;
+    mostrar: boolean;
 }
 
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard',           title: 'Dashboard',          icon: 'nc-bank',       class: '' },
-    { path: '/user',                title: 'Meu Perfil',         icon: 'nc-single-02',  class: '' },
-    { path: '/usuarios/listar',     title: 'Listagem de Usuários',  icon: 'nc-tile-56',    class: '' },
+    { path: '/dashboard',           title: 'Dashboard',          icon: 'nc-bank',       class: '', mostrar: true },
+    { path: '/user',                title: 'Meu Perfil',         icon: 'nc-single-02',  class: '', mostrar: true },
+    { path: '/usuarios/listar',     title: 'Listagem de Usuários',  icon: 'nc-tile-56',    class: '', mostrar: true },
+    { path: '/usuarios/cadastrar',  title: 'Cadastrar Usuário',  icon: '',    class: '' , mostrar: false},
 
     // { path: '/icons',         title: 'Ícones',             icon: 'nc-diamond',    class: '' },
     // { path: '/notifications', title: 'Notificações',       icon: 'nc-bell-55',    class: '' },

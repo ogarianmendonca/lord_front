@@ -5,40 +5,41 @@
         <div class="row">
           <div class="col-5 col-md-4">
             <div class="icon-big text-center icon-warning">
-              <i class="nc-icon nc-globe text-warning"></i>
+              <i class="nc-icon nc-single-02 text-success"></i>
             </div>
           </div>
           <div class="col-7 col-md-8">
             <div class="numbers">
-              <p class="card-category">Capacity</p>
-              <p class="card-title">150GB
-                <p>
+              <p class="card-category">Usuários</p>
+              <p class="card-title">{{contagemUsuarios}}
+              <p>
             </div>
           </div>
         </div>
       </div>
       <div class="card-footer ">
         <hr>
-        <div class="stats">
-          <i class="fa fa-refresh"></i> Update Now
+        <div class="stats" [routerLink]="['/usuarios/listar']" style="cursor: pointer;">
+          <i class="fa fa-eye"></i> Listagem
         </div>
       </div>
     </div>
   </div>
+
   <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card card-stats">
       <div class="card-body ">
         <div class="row">
           <div class="col-5 col-md-4">
             <div class="icon-big text-center icon-warning">
-              <i class="nc-icon nc-money-coins text-success"></i>
+              <i class="nc-icon nc-money-coins text-warning"></i>
             </div>
           </div>
           <div class="col-7 col-md-8">
             <div class="numbers">
-              <p class="card-category">Revenue</p>
-              <p class="card-title">$ 1,345
-                <p>
+              <p class="card-category">Rendimento</p>
+              <p class="card-title">R$ 0,00
+              <p>
             </div>
           </div>
         </div>
@@ -46,11 +47,12 @@
       <div class="card-footer ">
         <hr>
         <div class="stats">
-          <i class="fa fa-calendar-o"></i> Last day
+          <i class="fa fa-calendar-o"></i> Calendário
         </div>
       </div>
     </div>
   </div>
+
   <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card card-stats">
       <div class="card-body ">
@@ -62,9 +64,9 @@
           </div>
           <div class="col-7 col-md-8">
             <div class="numbers">
-              <p class="card-category">Errors</p>
-              <p class="card-title">23
-                <p>
+              <p class="card-category">Erros</p>
+              <p class="card-title">00
+              <p>
             </div>
           </div>
         </div>
@@ -72,11 +74,12 @@
       <div class="card-footer ">
         <hr>
         <div class="stats">
-          <i class="fa fa-clock-o"></i> In the last hour
+          <i class="fa fa-clock-o"></i> Relatórios
         </div>
       </div>
     </div>
   </div>
+
   <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card card-stats">
       <div class="card-body ">
@@ -88,9 +91,9 @@
           </div>
           <div class="col-7 col-md-8">
             <div class="numbers">
-              <p class="card-category">Followers</p>
-              <p class="card-title">+45K
-                <p>
+              <p class="card-category">Curtidas</p>
+              <p class="card-title">00
+              <p>
             </div>
           </div>
         </div>
@@ -98,18 +101,19 @@
       <div class="card-footer ">
         <hr>
         <div class="stats">
-          <i class="fa fa-refresh"></i> Update now
+          <i class="fa fa-refresh"></i> Atualizar
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <div class="row">
   <div class="col-md-12">
     <div class="card ">
       <div class="card-header ">
-        <h5 class="card-title">Users Behavior</h5>
-        <p class="card-category">24 Hours performance</p>
+        <h5 class="card-title">Comportamentos dos Usuários</h5>
+        <p class="card-category">24 Horas de desempenho</p>
       </div>
       <div class="card-body ">
         <canvas id=chartHours width="400" height="100"></canvas>
@@ -117,53 +121,58 @@
       <div class="card-footer ">
         <hr>
         <div class="stats">
-          <i class="fa fa-history"></i> Updated 3 minutes ago
+          <i class="fa fa-history"></i> 
+          Atualizado 3 minutos atrás
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <div class="row">
   <div class="col-md-4">
     <div class="card ">
       <div class="card-header ">
-        <h5 class="card-title">Email Statistics</h5>
-        <p class="card-category">Last Campaign Performance</p>
+        <h5 class="card-title">
+          Estatísticas de Email
+        </h5>
+        <p class="card-category">Último desempenho da campanha</p>
       </div>
       <div class="card-body ">
         <canvas id="chartEmail"></canvas>
       </div>
       <div class="card-footer ">
         <div class="legend">
-          <i class="fa fa-circle text-primary"></i> Opened
-          <i class="fa fa-circle text-warning"></i> Read
-          <i class="fa fa-circle text-danger"></i> Deleted
-          <i class="fa fa-circle text-gray"></i> Unopened
+          <i class="fa fa-circle text-primary"></i> Aberto
+          <i class="fa fa-circle text-warning"></i> Leitura
+          <i class="fa fa-circle text-danger"></i> Excluído
+          <i class="fa fa-circle text-gray"></i> Fechado
         </div>
         <hr>
         <div class="stats">
-          <i class="fa fa-calendar"></i> Number of emails sent
+          <i class="fa fa-calendar"></i> Número de emails enviados
         </div>
       </div>
     </div>
   </div>
+
   <div class="col-md-8">
     <div class="card card-chart">
       <div class="card-header">
         <h5 class="card-title">NASDAQ: AAPL</h5>
-        <p class="card-category">Line Chart with Points</p>
+        <p class="card-category">Gráfico de linhas com pontos</p>
       </div>
       <div class="card-body">
         <canvas id="speedChart" width="400" height="100"></canvas>
       </div>
       <div class="card-footer">
         <div class="chart-legend">
-          <i class="fa fa-circle text-info"></i> Tesla Model S
-          <i class="fa fa-circle text-warning"></i> BMW 5 Series
+          <i class="fa fa-circle text-info"></i> Item A
+          <i class="fa fa-circle text-warning"></i> Item B
         </div>
-        <hr/>
+        <hr />
         <div class="card-stats">
-          <i class="fa fa-check"></i> Data information certified
+          <i class="fa fa-check"></i> Informações de dados certificadas
         </div>
       </div>
     </div>

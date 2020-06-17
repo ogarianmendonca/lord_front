@@ -3,22 +3,36 @@
     <div class="card">
       <div class="card-header">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-5">
             <h4 class="card-title">Usuários</h4>
           </div>
-          <div class="col-md-6 text-right">
+          <div class="col-7 text-right">
             <a [routerLink]="['/usuarios/cadastrar']" class="btn btn-primary btn-round">
               <i class="nc-icon nc-simple-add"></i> Cadastrar
             </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12 text-right">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">
+                  <i class="fa fa-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" aria-label="Default" 
+                aria-describedby="inputGroup-sizing-default"
+                placeholder="Digite para pesquisar"
+                [(ngModel)]="filtroLista">
+            </div>
           </div>
         </div>
       </div>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table">
-            <thead class=" text-primary">
-              <th>
-              </th>
+            <thead class="text-primary">
+              <th style="padding: 1.75rem !important"></th>
               <th>
                 Nome
               </th>
@@ -39,7 +53,7 @@
               </th>
             </thead>
             <tbody>
-              <tr *ngFor="let usuario of usuarios">
+              <tr *ngFor="let usuario of usuariosFiltrados">
                 <td>
                   <img *ngIf="usuario?.imagem !== 'sem_imagem'" class="avatar border-gray" src="{{usuario?.imagem}}">
                   <img *ngIf="usuario?.imagem === 'sem_imagem'" class="avatar border-gray" src="assets/img/default-avatar.png">
@@ -66,15 +80,17 @@
                 </td>
                 <td>
                   <div class="btn-group" role="group">
-                    <a [routerLink]="['/usuarios/editar/', usuario?.id]" type="button" tooltip="Visualizar/Editar Usuário" class="btn btn-sm btn-primary">
+                    <a [routerLink]="['/usuarios/editar/', usuario?.id]" type="button" 
+                        tooltip="Visualizar/Editar Usuário" 
+                        class="btn btn-sm btn-outline-primary">
                       <i class="fa fa-eye" style="font-size: 18px;"></i>
                     </a>
-                    <a (click)="openModal(template, usuario)" type="button" 
+                    <button (click)="openModal(template, usuario)" type="button" 
                         tooltip="Ativar ou inativar usuário" 
                         class="btn btn-sm"
                         [ngClass]="{'btn-danger': usuario?.status == false, 'btn-success': usuario?.status == true}">
                       <i class="fa fa-refresh" style="font-size: 18px;"></i>
-                    </a>
+                    </button>
                   </div>
                 </td>
               </tr>
