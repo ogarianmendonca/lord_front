@@ -22,10 +22,10 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'icons',                    component: IconsComponent },
     { path: 'notifications',            component: NotificationsComponent },
     { path: 'upgrade',                  component: UpgradeComponent },
-    
+
     // usuarios/
-    { 
-        path: 'usuarios',        
+    {
+        path: 'usuarios',
         component: UsuariosComponent,
         children: [
             { path: 'listar',          component: UsuariosListComponent },
@@ -33,5 +33,5 @@ export const AdminLayoutRoutes: Routes = [
             { path: 'editar/:id',      component: UsuariosEditComponent }
         ]
     },
-    
+
 ];

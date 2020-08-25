@@ -14,15 +14,16 @@ export const ROUTES: RouteInfo[] = [
     { path: '/usuarios/listar',     title: 'Listagem de Usuários',  icon: 'nc-tile-56',    class: '', mostrar: true },
     { path: '/usuarios/cadastrar',  title: 'Cadastrar Usuário',  icon: '',    class: '' , mostrar: false},
 
-    // { path: '/icons',         title: 'Ícones',             icon: 'nc-diamond',    class: '' },
-    // { path: '/notifications', title: 'Notificações',       icon: 'nc-bell-55',    class: '' },
-    // { path: '/table',         title: 'Tabelas e Listas',   icon: 'nc-tile-56',    class: '' },
-    // { path: '/typography',    title: 'Tipografia',         icon: 'nc-caps-small', class: '' },
-    // { path: '/upgrade',       title: 'Upgrade to PRO',    icon: 'nc-spaceship',  class: 'active-pro' },
+    // { path: '/icons',         title: 'Ícones',             icon: 'nc-diamond',    class: '', mostrar: true },
+    // { path: '/notifications', title: 'Notificações',       icon: 'nc-bell-55',    class: '', mostrar: true },
+    // { path: '/table',         title: 'Tabelas e Listas',   icon: 'nc-tile-56',    class: '', mostrar: true },
+    // { path: '/typography',    title: 'Tipografia',         icon: 'nc-caps-small', class: '', mostrar: true },
+    // { path: '/upgrade',       title: 'Upgrade to PRO',    icon: 'nc-spaceship',  class: 'active-pro', mostrar: true },
 ];
 
 @Component({
     moduleId: module.id,
+  // tslint:disable-next-line:component-selector
     selector: 'sidebar-cmp',
     templateUrl: 'sidebar.component.html',
 })

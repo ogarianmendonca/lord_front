@@ -32,9 +32,9 @@
           <a class="nav-link" [routerLink]="['/user']" tooltip="Visualizar Perfil">
             {{user?.name}}
             <img *ngIf="user?.imagem !== 'sem_imagem'" src="{{user?.imagem}}" class="avatar border-gray"
-              style="width: 22px; border-radius: 50px;">
+              style="width: 22px; border-radius: 50px;" alt="">
             <img *ngIf="user?.imagem === 'sem_imagem'" src="assets/img/default-avatar.png" class="avatar border-gray"
-              style="width: 22px; border-radius: 50px;">
+              style="width: 22px; border-radius: 50px;" alt="">
           </a>
         </li>
 

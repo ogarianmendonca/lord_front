@@ -31,7 +31,7 @@ export class AuthService {
    * Metodo para verificar se o usuario está logado
    */
   verificaUsuarioLogado(): boolean {
-    return localStorage.getItem('token') ? true : false;
+    return !!localStorage.getItem('token');
   }
 
   /**

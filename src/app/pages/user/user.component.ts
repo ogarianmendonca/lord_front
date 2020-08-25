@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { UsuarioService } from '../../services/usuario.service';
@@ -77,7 +76,7 @@ export class UserComponent implements OnInit {
   }
 
   /**
-   * Carrega imagem 
+   * Carrega imagem
    */
   carregarImagem(event: any) {
     this.imagem = event.target.files;

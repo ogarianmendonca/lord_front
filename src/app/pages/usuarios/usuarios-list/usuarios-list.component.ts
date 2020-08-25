@@ -4,6 +4,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { UsuarioService } from 'app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import {AuthService} from 'app/services/auth.service';
 
 @Component({
   selector: 'app-usuarios-list',
@@ -13,17 +14,20 @@ import { ToastrService } from 'ngx-toastr';
 export class UsuariosListComponent implements OnInit {
 
   usuarios: Usuario[];
+  usuarioLogado: Usuario;
   modalRef: BsModalRef;
   statusUsuarioModal: boolean;
   idUsuario: number;
 
   usuariosFiltrados: Usuario[];
   _filtroLista = '';
-  
+
   constructor(private ngxLoader: NgxUiLoaderService,
     private usuarioService: UsuarioService,
     private toastr: ToastrService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService,
+    private authService: AuthService
+  ) { }
 
   get filtroLista(): string {
     return this._filtroLista;
@@ -36,6 +40,7 @@ export class UsuariosListComponent implements OnInit {
 
   ngOnInit() {
     this.buscarUsuarios();
+    this.getUsuarioLogado();
   }
 
   /**
@@ -101,6 +106,13 @@ export class UsuariosListComponent implements OnInit {
         positionClass: 'toast-' + from + '-' + align
       }
     );
+  }
+
+  /**
+   * Busca dados do usuário logado no storage
+   */
+  getUsuarioLogado() {
+    this.usuarioLogado =  this.authService.getUsuarioStorage();
   }
 
 }

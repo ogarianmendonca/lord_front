@@ -2,14 +2,14 @@
   <div class="col-md-4">
     <div class="card card-user">
       <div class="image">
-        <img *ngIf="usuario?.imagem !== 'sem_imagem'" src="{{usuario?.imagem}}" style="filter:blur(15px);">
-        <img *ngIf="usuario?.imagem === 'sem_imagem'" src="assets/img/default-avatar.png" style="filter:blur(15px);">
+        <img *ngIf="usuario?.imagem !== 'sem_imagem'" src="{{usuario?.imagem}}" style="filter:blur(15px);" alt="">
+        <img *ngIf="usuario?.imagem === 'sem_imagem'" src="assets/img/default-avatar.png" style="filter:blur(15px);" alt="">
       </div>
       <div class="card-body">
         <div class="author">
           <a href="#">
-            <img *ngIf="usuario?.imagem !== 'sem_imagem'" src="{{usuario?.imagem}}" class="avatar border-gray">
-            <img *ngIf="usuario?.imagem === 'sem_imagem'" src="assets/img/default-avatar.png" class="avatar border-gray">
+            <img *ngIf="usuario?.imagem !== 'sem_imagem'" src="{{usuario?.imagem}}" class="avatar border-gray" alt="">
+            <img *ngIf="usuario?.imagem === 'sem_imagem'" src="assets/img/default-avatar.png" class="avatar border-gray" alt="">
             <h5 class="title">{{usuario?.name}}</h5>
           </a>
           <p class="description">
@@ -51,8 +51,8 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Nome</label>
-                <input formControlName="name" type="text" class="form-control" 
-                  [ngClass]="{'is-invalid': formularioUsuario.get('name').errors && formularioUsuario.get('name').touched}" 
+                <input formControlName="name" type="text" class="form-control"
+                  [ngClass]="{'is-invalid': formularioUsuario.get('name').errors && formularioUsuario.get('name').touched}"
                   placeholder="Digite o nome do usuário">
                 <div *ngIf="formularioUsuario.get('name').hasError('required') && formularioUsuario.get('name').touched" class="invalid-feedback">
                   Campo obrigatório!

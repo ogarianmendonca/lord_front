@@ -9,8 +9,10 @@ import {environment} from '../../../environments/environment';
 
 @Component({
     moduleId: module.id,
+  // tslint:disable-next-line:component-selector
     selector: 'navbar-cmp',
-    templateUrl: 'navbar.component.html'
+    templateUrl: 'navbar.component.html',
+    styleUrls: ['./navbar.component.scss']
 })
 
 export class NavbarComponent implements OnInit {
@@ -130,8 +132,8 @@ export class NavbarComponent implements OnInit {
     this.authService.atualizarPerfil
     .subscribe((resp: Usuario) => {
       this.user = resp;
-      
-      if(this.user.status == false) {
+
+      if (this.user.status === false) {
         this.authService.logout();
       }
     });

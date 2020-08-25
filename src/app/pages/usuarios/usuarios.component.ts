@@ -8,7 +8,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 export class UsuariosComponent implements OnInit {
 
   constructor() { }
-  
+
   ngOnInit() {
   }
 

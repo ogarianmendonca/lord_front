@@ -51,7 +51,7 @@ export class UsuariosEditComponent implements OnInit {
    */
   buscarUsuarioSelecionado() {
     this.ngxLoader.start();
-    var id = this.routerActivated.snapshot.params['id'];
+    const id = this.routerActivated.snapshot.params['id'];
 
     this.usuarioService.buscarUsuarioSelecionado(id)
       .subscribe((resp: Usuario) => {
@@ -87,7 +87,7 @@ export class UsuariosEditComponent implements OnInit {
   }
 
   /**
-   * Carrega imagem 
+   * Carrega imagem
    */
   carregarImagem(event: any) {
     this.imagem = event.target.files;
@@ -118,7 +118,7 @@ export class UsuariosEditComponent implements OnInit {
     } else {
       this.usuarioService.uploadImagem(this.imagem).subscribe(resImg => {
         this.formularioUsuario.value.imagem = resImg['imagem'];
-    
+
         this.usuarioService.editarUsuario(id, this.formularioUsuario.value).subscribe((resp: Usuario) => {
           this.showNotificacao('top', 'right', 'success', 'Usuário editado com sucesso!', 'nc-check-2');
           this.router.navigate(['usuarios/listar']);

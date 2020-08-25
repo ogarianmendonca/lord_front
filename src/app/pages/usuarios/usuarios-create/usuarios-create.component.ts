@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
-import { AuthService } from 'app/services/auth.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { UsuarioService } from 'app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
@@ -61,7 +60,7 @@ export class UsuariosCreateComponent implements OnInit {
   }
 
   /**
-   * Carrega imagem 
+   * Carrega imagem
    */
   carregarImagem(event: any) {
     this.imagem = event.target.files;
@@ -90,7 +89,7 @@ export class UsuariosCreateComponent implements OnInit {
     } else {
       this.usuarioService.uploadImagem(this.imagem).subscribe(resImg => {
         this.formularioUsuario.value.imagem = resImg['imagem'];
-    
+
         this.usuarioService.cadastrarUsuario(this.formularioUsuario.value).subscribe((resp: Usuario) => {
           this.showNotificacao('top', 'right', 'success', 'Usuário cadastrado com sucesso!', 'nc-check-2');
           this.router.navigate(['usuarios/listar']);
@@ -119,5 +118,5 @@ export class UsuariosCreateComponent implements OnInit {
       }
     );
   }
-  
+
 }
