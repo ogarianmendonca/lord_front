@@ -6,7 +6,7 @@
           <div class="col-5">
             <h4 class="card-title">Usuários</h4>
           </div>
-          <div class="col-7 text-right" *ngIf="usuarioLogado.perfil.descricao === 'ADMINISTRADOR' || usuarioLogado.perfil.descricao === 'COORDENADOR'">
+          <div class="col-7 text-right" *ngIf="usuarioLogado.perfil['descricao'] === 'ADMINISTRADOR' || usuarioLogado.perfil['descricao'] === 'COORDENADOR'">
             <a [routerLink]="['/usuarios/cadastrar']" class="btn btn-primary btn-round">
               <i class="nc-icon nc-simple-add"></i> Cadastrar
             </a>
@@ -78,7 +78,7 @@
                 <td>
                   {{usuario?.created_at | date:'dd/MM/y'}}
                 </td>
-                <td *ngIf="usuarioLogado.perfil.descricao === 'ADMINISTRADOR' || usuarioLogado.perfil.descricao === 'COORDENADOR'">
+                <td *ngIf="usuarioLogado.perfil['descricao'] === 'ADMINISTRADOR' || usuarioLogado.perfil['descricao'] === 'COORDENADOR'">
                   <div class="btn-group" role="group">
                     <a [routerLink]="['/usuarios/editar/', usuario?.id]" type="button"
                         tooltip="Visualizar/Editar Usuário"
