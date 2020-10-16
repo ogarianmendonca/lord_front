@@ -3,17 +3,7 @@
     <div class="card">
       <div class="card-header">
         <div class="row">
-          <div class="col-5">
-            <h4 class="card-title">Usuários</h4>
-          </div>
-          <div class="col-7 text-right" *ngIf="usuarioLogado.perfil['descricao'] === 'ADMINISTRADOR' || usuarioLogado.perfil['descricao'] === 'COORDENADOR'">
-            <a [routerLink]="['/usuarios/cadastrar']" class="btn btn-primary btn-round">
-              <i class="nc-icon nc-simple-add"></i> Cadastrar
-            </a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-4 col-sm-12 text-right">
+          <div class="col-lg-5 col-md-5 col-sm-12 div-pesquisar">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">
@@ -25,6 +15,11 @@
                 placeholder="Digite para pesquisar"
                 [(ngModel)]="filtroLista">
             </div>
+          </div>
+          <div class="col-7 text-right" *ngIf="usuarioLogado.perfil['descricao'] === 'ADMINISTRADOR' || usuarioLogado.perfil['descricao'] === 'COORDENADOR'">
+            <a [routerLink]="['/usuarios/cadastrar']" class="btn btn-primary btn-round">
+              <i class="nc-icon nc-simple-add"></i> Cadastrar
+            </a>
           </div>
         </div>
       </div>
