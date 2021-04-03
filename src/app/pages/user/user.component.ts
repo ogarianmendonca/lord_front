@@ -36,9 +36,6 @@ export class UserComponent implements OnInit {
     this.listarPerfis();
   }
 
-  /**
-   * Busca dados de usuario logado no storage
-   */
   buscarUsuarioLogado() {
     this.ngxLoader.start();
 
@@ -50,9 +47,6 @@ export class UserComponent implements OnInit {
       });
   }
 
-  /**
-   * Preenche e valida formulário
-   */
   validaFormulario(user) {
     this.formularioUsuario = this.formBuilder.group({
       name: [user.name, [Validators.required]],
@@ -65,9 +59,6 @@ export class UserComponent implements OnInit {
     });
   }
 
-  /**
-   * Listar perfis
-   */
   listarPerfis() {
     this.usuarioService.listarPerfis()
       .subscribe((resp: Perfil[]) => {
@@ -75,16 +66,10 @@ export class UserComponent implements OnInit {
       })
   }
 
-  /**
-   * Carrega imagem
-   */
   carregarImagem(event: any) {
     this.imagem = event.target.files;
   }
 
-  /**
-   * Editar usuário logado
-   */
   editarUsuario() {
     this.ngxLoader.start();
 
@@ -119,9 +104,6 @@ export class UserComponent implements OnInit {
     }
   }
 
-  /**
-   * Mostra alerta com mensagem
-   */
   showNotificacao(from, align, type, message, icon) {
     this.toastr.show(
       '<span data-notify="icon" class="nc-icon ' + icon + '"></span>' +
@@ -136,5 +118,4 @@ export class UserComponent implements OnInit {
       }
     );
   }
-
 }

@@ -12,7 +12,6 @@ import {AuthService} from 'app/services/auth.service';
   styleUrls: ['./usuarios-list.component.scss']
 })
 export class UsuariosListComponent implements OnInit {
-
   usuarios: Usuario[];
   usuarioLogado: Usuario;
   modalRef: BsModalRef;
@@ -22,7 +21,8 @@ export class UsuariosListComponent implements OnInit {
   usuariosFiltrados: Usuario[];
   _filtroLista = '';
 
-  constructor(private ngxLoader: NgxUiLoaderService,
+  constructor(
+    private ngxLoader: NgxUiLoaderService,
     private usuarioService: UsuarioService,
     private toastr: ToastrService,
     private modalService: BsModalService,
@@ -43,9 +43,6 @@ export class UsuariosListComponent implements OnInit {
     this.getUsuarioLogado();
   }
 
-  /**
-   * Filtrar busca de usuários
-   */
   filtrarUsuario(filtrarPor: string): Usuario[] {
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.usuarios.filter(
@@ -53,9 +50,6 @@ export class UsuariosListComponent implements OnInit {
     );
   }
 
-  /**
-   * Buscar usuários cadastrados
-   */
   buscarUsuarios() {
     this.ngxLoader.start();
 
@@ -73,9 +67,6 @@ export class UsuariosListComponent implements OnInit {
     this.idUsuario = usuario.id;
   }
 
-  /**
-   * Alterar status do usuário
-   */
   alterarStatus(idUsuario) {
     this.modalRef.hide()
     this.ngxLoader.start();
@@ -90,9 +81,6 @@ export class UsuariosListComponent implements OnInit {
       });
   }
 
-  /**
-   * Mostra alerta com mensagem
-   */
   showNotificacao(from, align, type, message, icon) {
     this.toastr.show(
       '<span data-notify="icon" class="nc-icon ' + icon + '"></span>' +
@@ -108,11 +96,7 @@ export class UsuariosListComponent implements OnInit {
     );
   }
 
-  /**
-   * Busca dados do usuário logado no storage
-   */
   getUsuarioLogado() {
     this.usuarioLogado =  this.authService.getUsuarioStorage();
   }
-
 }

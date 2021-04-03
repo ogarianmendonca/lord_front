@@ -13,12 +13,6 @@ export const ROUTES: RouteInfo[] = [
     { path: '/user',                title: 'Meu Perfil',         icon: 'nc-single-02',  class: '', mostrar: true },
     { path: '/usuarios/listar',     title: 'Listagem de Usuários',  icon: 'nc-tile-56',    class: '', mostrar: true },
     { path: '/usuarios/cadastrar',  title: 'Cadastrar Usuário',  icon: '',    class: '' , mostrar: false},
-
-    // { path: '/icons',         title: 'Ícones',             icon: 'nc-diamond',    class: '', mostrar: true },
-    // { path: '/notifications', title: 'Notificações',       icon: 'nc-bell-55',    class: '', mostrar: true },
-    // { path: '/table',         title: 'Tabelas e Listas',   icon: 'nc-tile-56',    class: '', mostrar: true },
-    // { path: '/typography',    title: 'Tipografia',         icon: 'nc-caps-small', class: '', mostrar: true },
-    // { path: '/upgrade',       title: 'Upgrade to PRO',    icon: 'nc-spaceship',  class: 'active-pro', mostrar: true },
 ];
 
 @Component({
@@ -30,6 +24,7 @@ export const ROUTES: RouteInfo[] = [
 
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
+    
     ngOnInit() {
         this.menuItems = ROUTES.filter(menuItem => menuItem);
     }

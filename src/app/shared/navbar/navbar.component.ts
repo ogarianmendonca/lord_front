@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Renderer, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { ROUTES } from '../../sidebar/sidebar.component';
 import { Router } from '@angular/router';
 import { Location} from '@angular/common';
@@ -28,13 +28,14 @@ export class NavbarComponent implements OnInit {
   user: Usuario;
   url = environment.api_url;
 
-  constructor(location: Location,
-              private renderer: Renderer,
-              private element: ElementRef,
-              private router: Router,
-              private authService: AuthService,
-              private ngxLoader: NgxUiLoaderService) {
-
+  constructor(
+    location: Location,
+    private renderer: Renderer2,
+    private element: ElementRef,
+    private router: Router,
+    private authService: AuthService,
+    private ngxLoader: NgxUiLoaderService
+  ) {
     this.location = location;
     this.nativeElement = element.nativeElement;
     this.sidebarVisible = false;
@@ -115,9 +116,6 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  /**
-   * Busca usuário logado
-   */
   buscarUsuarioLogado() {
     this.authService.getUsuarioAutenticado()
     .subscribe((resp: Usuario) => {
@@ -125,9 +123,6 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  /**
-   * Atualiza dados do usuário logado
-   */
   atualizaUsuarioLogado() {
     this.authService.atualizarPerfil
     .subscribe((resp: Usuario) => {
@@ -139,9 +134,6 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  /**
-   * Metodo para fazer logout
-   */
   logout(e) {
     this.ngxLoader.start();
     e.preventDefault();

@@ -7,14 +7,10 @@ import { AuthService } from 'app/services/auth.service';
   providedIn: 'root'
 })
 
-/**
- * Proteção das rotas
- */
 export class AuthGuard implements CanActivate, CanActivateChild {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  // Protege as rotas principais
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
@@ -26,7 +22,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return false;
   }
 
-  // Protege rotas filhas
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 

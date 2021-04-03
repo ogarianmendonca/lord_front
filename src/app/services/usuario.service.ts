@@ -5,9 +5,6 @@ import {Observable} from 'rxjs';
 import {Usuario} from '../models/usuario.interface';
 import { Perfil } from 'app/models/perfil.interface';
 
-/**
- * Usar em http.post
- */
 const httpOptions = {
   headers: new HttpHeaders(
     {'Content-Type': 'application/json'}
@@ -18,7 +15,6 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UsuarioService {
-
   private urlApiUsuario = environment.api_url + 'api/usuario/';
 
   constructor(private http: HttpClient) { }

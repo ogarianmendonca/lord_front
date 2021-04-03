@@ -14,7 +14,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./usuarios-create.component.scss']
 })
 export class UsuariosCreateComponent implements OnInit {
-
   user: Usuario;
   perfis: Perfil[];
   imagem: Set<File>;
@@ -23,21 +22,19 @@ export class UsuariosCreateComponent implements OnInit {
   message: string;
   icon: string;
 
-  constructor(private formBuilder: FormBuilder,
-              private router: Router,
-              private ngxLoader: NgxUiLoaderService,
-              private usuarioService: UsuarioService,
-              private toastr: ToastrService
-    ) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private ngxLoader: NgxUiLoaderService,
+    private usuarioService: UsuarioService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
     this.listarPerfis();
     this.validaFormulario();
   }
 
-  /**
-   * Preenche e valida formulário
-   */
   validaFormulario() {
     this.formularioUsuario = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -49,9 +46,6 @@ export class UsuariosCreateComponent implements OnInit {
     });
   }
 
-  /**
-   * Listar perfis
-   */
   listarPerfis() {
     this.usuarioService.listarPerfis()
       .subscribe((resp: Perfil[]) => {
@@ -59,16 +53,10 @@ export class UsuariosCreateComponent implements OnInit {
       })
   }
 
-  /**
-   * Carrega imagem
-   */
   carregarImagem(event: any) {
     this.imagem = event.target.files;
   }
 
-  /**
-   * Cadastrar usuário
-   */
   cadastrarUsuario() {
     this.ngxLoader.start();
 
@@ -101,9 +89,6 @@ export class UsuariosCreateComponent implements OnInit {
     }
   }
 
-  /**
-   * Mostra alerta com mensagem
-   */
   showNotificacao(from, align, type, message, icon) {
     this.toastr.show(
       '<span data-notify="icon" class="nc-icon ' + icon + '"></span>' +
@@ -118,5 +103,4 @@ export class UsuariosCreateComponent implements OnInit {
       }
     );
   }
-
 }

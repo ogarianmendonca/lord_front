@@ -8,10 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class FixedPluginComponent implements OnInit {
-
   public sidebarColor = 'white';
   public sidebarActiveColor = 'danger';
-
   public state = true;
 
   changeSidebarColor(color) {
@@ -23,6 +21,7 @@ export class FixedPluginComponent implements OnInit {
         sidebar.setAttribute('data-color', color);
     }
   }
+
   changeSidebarActiveColor(color) {
     const sidebar = <HTMLElement>document.querySelector('.sidebar');
     this.sidebarActiveColor = color;
@@ -30,5 +29,6 @@ export class FixedPluginComponent implements OnInit {
         sidebar.setAttribute('data-active-color', color);
     }
   }
+  
   ngOnInit() {}
 }

@@ -14,7 +14,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./usuarios-edit.component.scss']
 })
 export class UsuariosEditComponent implements OnInit {
-
   usuario: Usuario;
   perfis: Perfil[];
   imagem: Set<File>;
@@ -24,14 +23,15 @@ export class UsuariosEditComponent implements OnInit {
   message: string;
   icon: string;
 
-  constructor(private formBuilder: FormBuilder,
-              private routerActivated: ActivatedRoute,
-              private router: Router,
-              private ngxLoader: NgxUiLoaderService,
-              private usuarioService: UsuarioService,
-              private toastr: ToastrService,
-              private authService: AuthService) {
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private routerActivated: ActivatedRoute,
+    private router: Router,
+    private ngxLoader: NgxUiLoaderService,
+    private usuarioService: UsuarioService,
+    private toastr: ToastrService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.buscarUsuarioSelecionado();
@@ -39,16 +39,10 @@ export class UsuariosEditComponent implements OnInit {
     this.getUsuarioStorage();
   }
 
-  /**
-   * Recupera dados do usuário logado
-   */
   getUsuarioStorage() {
     this.user = this.authService.getUsuarioStorage();
   }
 
-  /**
-   * Busca dados de usuario logado no storage
-   */
   buscarUsuarioSelecionado() {
     this.ngxLoader.start();
     const id = this.routerActivated.snapshot.params['id'];
@@ -61,9 +55,6 @@ export class UsuariosEditComponent implements OnInit {
       });
   }
 
-  /**
-   * Preenche e valida formulário
-   */
   validaFormulario(usuario) {
     this.formularioUsuario = this.formBuilder.group({
       name: [usuario.name, [Validators.required]],
@@ -76,9 +67,6 @@ export class UsuariosEditComponent implements OnInit {
     });
   }
 
-  /**
-   * Listar perfis
-   */
   listarPerfis() {
     this.usuarioService.listarPerfis()
       .subscribe((resp: Perfil[]) => {
@@ -86,16 +74,10 @@ export class UsuariosEditComponent implements OnInit {
       })
   }
 
-  /**
-   * Carrega imagem
-   */
   carregarImagem(event: any) {
     this.imagem = event.target.files;
   }
 
-  /**
-   * Editar usuário selecionado
-   */
   editarUsuario() {
     this.ngxLoader.start();
 
@@ -130,9 +112,6 @@ export class UsuariosEditComponent implements OnInit {
     }
   }
 
-  /**
-   * Mostra alerta com mensagem
-   */
   showNotificacao(from, align, type, message, icon) {
     this.toastr.show(
       '<span data-notify="icon" class="nc-icon ' + icon + '"></span>' +
@@ -147,5 +126,4 @@ export class UsuariosEditComponent implements OnInit {
       }
     );
   }
-
 }

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'app/services/auth.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import {NgxUiLoaderService} from 'ngx-ui-loader';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -12,11 +12,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
+  public formulario: FormGroup;
+  public icon: string;
 
-  formulario: FormGroup;
-  icon: string;
-
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
     private ngxLoader: NgxUiLoaderService,
@@ -30,9 +30,6 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  /**
-  * Metodo para fazer login
-  */
   logar() {
     this.ngxLoader.start();
 
@@ -51,14 +48,16 @@ export class AuthComponent implements OnInit {
 
           this.icon = 'nc-bell-55';
           this.showNotificacao('top', 'right', 'warning', errorResponse.error.message, this.icon);
+        } else {
+          this.ngxLoader.stop();
+
+          this.icon = 'nc-bell-55';
+          this.showNotificacao('top', 'right', 'warning', "Erro ao realizar o login. Tente novamente.", this.icon);
         }
       }
     );
   }
 
-  /**
-   * Mostra alerta com mensagem
-   */
   showNotificacao(from, align, type, message, icon) {
     this.toastr.show(
       '<span data-notify="icon" class="nc-icon ' + icon + '"></span>' +
@@ -73,5 +72,4 @@ export class AuthComponent implements OnInit {
       }
     );
   }
-
 }
