@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   getUsuarioAutenticado(): Observable<Usuario> {
-    return this.http.get<Usuario>(environment.api_url + 'api/usuario/getUser')
+    return this.http.get<Usuario>(environment.api_url + 'api/usuario/get-user')
       .pipe(tap(
         (resp: Usuario) => {
           // resp['usuario']['imagem'] = environment.api_url + resp['usuario']['imagem'];

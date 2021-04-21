@@ -20,11 +20,11 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
   buscarUsuarios (): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.urlApiUsuario + 'buscarUsuarios');
+    return this.http.get<Usuario[]>(this.urlApiUsuario + 'buscar-usuarios');
   }
 
   listarPerfis(): Observable<Perfil[]> {
-    return this.http.get<Perfil[]>(environment.api_url + 'api/perfil/buscarPerfis');
+    return this.http.get<Perfil[]>(environment.api_url + 'api/perfil/buscar-perfis');
   }
 
   cadastrarUsuario (dados): Observable<Usuario> {
@@ -42,10 +42,10 @@ export class UsuarioService {
   }
 
   buscarUsuarioSelecionado(id) {
-    return this.http.get<Usuario>(this.urlApiUsuario + 'visualizarUsuario/' + id);
+    return this.http.get<Usuario>(this.urlApiUsuario + 'visualizar-usuario/' + id);
   }
 
   alterarStatusUsuario(id) {
-    return this.http.put(this.urlApiUsuario + 'alterarStatus/' + id, [], httpOptions);
+    return this.http.put(this.urlApiUsuario + 'alterar-status/' + id, [], httpOptions);
   }
 }
