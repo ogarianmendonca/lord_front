@@ -99,4 +99,17 @@ export class UsuariosListComponent implements OnInit {
   getUsuarioLogado() {
     this.usuarioLogado =  this.authService.getUsuarioStorage();
   }
+
+  excluirPerfil() {
+    this.modalRef.hide()
+    this.ngxLoader.start();
+
+    this.usuarioService.excluirPerfil(this.idUsuario).subscribe((resp: Usuario) => {
+      this.showNotificacao('top', 'right', 'success', 'Usuário excluído com sucesso!', 'nc-check-2');
+      this.buscarUsuarios();
+    }, (error: any) => {
+      this.showNotificacao('top', 'right', 'warning', error.error[0], 'nc-bell-55');
+      this.ngxLoader.stop();
+    });
+  }
 }

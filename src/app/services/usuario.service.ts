@@ -48,4 +48,8 @@ export class UsuarioService {
   alterarStatusUsuario(id) {
     return this.http.put(this.urlApiUsuario + 'alterar-status/' + id, [], httpOptions);
   }
+
+  excluirPerfil(id): Observable<any>{
+    return this.http.delete<any>(this.urlApiUsuario + 'excluir-perfil/' + id);
+  }
 }

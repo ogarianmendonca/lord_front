@@ -80,11 +80,18 @@
                         class="btn btn-sm btn-outline-primary">
                       <i class="fa fa-eye" style="font-size: 18px;"></i>
                     </a>
+                    
                     <button (click)="openModal(template, usuario)" type="button"
                         tooltip="Ativar ou inativar usuário"
                         class="btn btn-sm"
                         [ngClass]="{'btn-danger': usuario?.status == false, 'btn-success': usuario?.status == true}">
                       <i class="fa fa-refresh" style="font-size: 18px;"></i>
+                    </button>
+
+                    <button (click)="openModal(templateExcluir, usuario)" type="button"
+                        tooltip="Excluir usuário definitivamente"
+                        class="btn btn-sm btn-danger">
+                      <i class="fa fa-trash" style="font-size: 18px;"></i>
                     </button>
                   </div>
                 </td>
@@ -110,6 +117,24 @@
     <div class="text-right">
       <button type="button" class="btn btn-primary" (click)="modalRef.hide()">Cancelar</button>
       <button type="button" class="btn btn-danger" (click)="alterarStatus(idUsuario)">Sim</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #templateExcluir>
+  <div class="modal-header">
+    <h6 class="modal-title pull-left">Excluir perfil</h6>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Tem certeza de que deseja <b>excluir</b> definitivamente este usuário?
+    <br>Não poderemos restaurar esta conta depois de excluí-la.  
+
+    <div class="text-right">
+      <button type="button" class="btn btn-primary" (click)="modalRef.hide()">Cancelar</button>
+      <button type="button" class="btn btn-danger" (click)="excluirPerfil(idUsuario)">Sim</button>
     </div>
   </div>
 </ng-template>
